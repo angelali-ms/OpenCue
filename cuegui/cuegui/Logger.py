@@ -41,5 +41,6 @@ def getLogger(name):
     @rtype:  Handler"""
     logger = logging.getLogger(name)
     logger.addHandler(loggerStream)
+    logger.setLevel(getattr(logging, cuegui.Constants.LOGGER_LEVEL))
 
     return logger

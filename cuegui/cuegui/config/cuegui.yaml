@@ -1,7 +1,7 @@
 # Default CueGUI config file
 
 logger.format: '%(levelname)-9s %(module)-10s %(message)s'
-logger.level: 'WARNING'
+logger.level: 'DEBUG'
 
 # Path for static resources like images/icons.
 paths.resources: './images'

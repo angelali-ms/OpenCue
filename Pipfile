@@ -1,0 +1,27 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+2to3 = "==1.0"
+enum34 = "==1.1.6"
+future = "==0.18.3"
+grpcio = "==1.47.0"
+grpcio-tools = "==1.47.0"
+mock = "==2.0.0"
+packaging = "==20.9"
+psutil = "==5.6.7"
+pyfakefs = "==5.2.3"
+pylint = "==2.6.0"
+pynput = "==1.7.6"
+pyyaml = "==5.1"
+six = "==1.11.0"
+PySide2 = "==5.15.2.1"
+QtPy = "==2.3.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
+python_full_version = "3.7.9"
