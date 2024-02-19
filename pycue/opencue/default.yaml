@@ -7,7 +7,7 @@ logger.level: WARNING
 # Cuebot Network Settings
 cuebot.protocol: tcp
 cuebot.grpc_port: 8443
-cuebot.timeout: 10000
+cuebot.timeout: 10
 cuebot.max_message_bytes: 104857600
 cuebot.exception_retries: 3
 

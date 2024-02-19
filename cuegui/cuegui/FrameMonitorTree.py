@@ -29,6 +29,7 @@ import os
 import re
 import time
 
+import grpc
 from qtpy import QtCore
 from qtpy import QtGui
 from qtpy import QtWidgets
@@ -447,7 +448,7 @@ class FrameMonitorTree(cuegui.AbstractTreeWidget.AbstractTreeWidget):
         self._lastUpdate = time.time()
         if self.app.threadpool is not None:
             self.app.threadpool.queue(
-                self._getUpdate, self._processUpdate, "getting data for %s" % self.__class__)
+                self._getUpdate, self._processUpdate, "getting getUpdate data for %s" % self.__class__)
         else:
             logger.warning("threadpool not found, doing work in gui thread")
             self._processUpdate(None, self._getUpdate())
@@ -502,6 +503,13 @@ class FrameMonitorTree(cuegui.AbstractTreeWidget.AbstractTreeWidget):
                 return None
             # pylint: enable=no-member
             list(map(logger.warning, cuegui.Utils.exceptionOutput(e)))
+        except grpc._channel._InactiveRpcError as e:
+            # Assuming this is because timestamp is over a minute off (hack to work around the hang)
+            logger.warning("Call timed out, forcing full update")
+            logger.warning(str(e))
+            if hasattr(e, "message"):
+                logger.warning(str(e.message))
+            return None
 
         logger.info(" - %s", self.__class__)
         return updatedFrames
